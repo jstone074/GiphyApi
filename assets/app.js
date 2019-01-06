@@ -1,4 +1,5 @@
 var buttons = ["cat", "dog", "rabbit"];
+var limit = 20;
 
 function createButton() {
 
@@ -17,14 +18,14 @@ function createButton() {
     }
 }
 
-function displayGiphy(data) {
+//Function to call the giphy API passing in two variables
+//one for the gif and the other for the limit
+//default when the button is selected is 10, there is a get more button that will populate 10 more at a time
+function displayGiphy(data,limit) {
 
     $("#giphyImages").empty()
-    var dataButtonInfo = $(data).attr("data-search");
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=9m05DnrzeH6yt3AWCKZi421Q74SoqIY9&q=" + data + "&limit=10&offset=1lang=en";
-
-    console.log(queryURL);
-
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=9m05DnrzeH6yt3AWCKZi421Q74SoqIY9&q=" + data + "&limit="+ limit +"&offset=1lang=en";
+    // console.log(queryURL);
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -35,13 +36,22 @@ function displayGiphy(data) {
         for (var i = 0; i < giphyData.length; i++) {
 
             var newDiv = $("<div>");
+            var giphyRating = $("<div>");
+            giphyRating.addClass("flex-column");
             var giphyDiv = $("<img>");
             giphyDiv.attr("src", giphyData[i].images.fixed_height_still.url);
             giphyDiv.attr("data-still",giphyData[i].images.fixed_height_still.url);
             giphyDiv.attr("data-animate",giphyData[i].images.fixed_height.url);
             giphyDiv.attr("data-state","still");
             giphyDiv.addClass("gif mr-1 mb-2");
-            $("#giphyImages").append(giphyDiv);
+            giphyRating.html("Rating " + giphyData[i].rating);
+            $(newDiv).append(giphyDiv);
+            $(giphyRating).append(newDiv);
+            // $(giphyRating).append(giphyDiv);
+            $("#giphyImages").append(giphyRating);
+            // $("#giphyImages").append(giphyDiv);
+  
+            
             console.log(giphyDiv);
 
         }
@@ -52,9 +62,21 @@ function displayGiphy(data) {
 
 $(document).on("click", ".btn", function () {
 
-    displayGiphy($(this).attr("data-search"));
-    console.log($(this).attr("data-search"));
+    //resets limit back to 20 when a new button is selected
+    limit = 20;
+    displayGiphy($(this).attr("data-search"),10);
+    currentSelectedGif = $(this).attr("data-search");
+
+    
 })
+
+$(document).on("click","#giphy-add-btn", function(){
+    displayGiphy(currentSelectedGif,limit);
+    limit = limit + 10;
+    console.log("This is the new Limit " + limit);
+    
+})
+
 
 $(document).on("click",".gif", function(){
     var state = $(this).attr("data-state");
@@ -68,6 +90,10 @@ $(document).on("click",".gif", function(){
         $(this).attr("data-state","still");
     }
 })
+
+
+
+
 
 $("#giphy-button").on("click", function (event) {
     event.preventDefault();
