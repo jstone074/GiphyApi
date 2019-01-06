@@ -36,9 +36,13 @@ function displayGiphy(data) {
 
             var newDiv = $("<div>");
             var giphyDiv = $("<img>");
-            giphyDiv.attr("src", giphyData[i].images.fixed_height.url);
-            giphyDiv.addClass("btn mr-1 mb-2");
+            giphyDiv.attr("src", giphyData[i].images.fixed_height_still.url);
+            giphyDiv.attr("data-still",giphyData[i].images.fixed_height_still.url);
+            giphyDiv.attr("data-animate",giphyData[i].images.fixed_height.url);
+            giphyDiv.attr("data-state","still");
+            giphyDiv.addClass("gif mr-1 mb-2");
             $("#giphyImages").append(giphyDiv);
+            console.log(giphyDiv);
 
         }
 
@@ -50,6 +54,19 @@ $(document).on("click", ".btn", function () {
 
     displayGiphy($(this).attr("data-search"));
     console.log($(this).attr("data-search"));
+})
+
+$(document).on("click",".gif", function(){
+    var state = $(this).attr("data-state");
+    console.log(state);
+
+    if (state ==="still"){
+        $(this).attr( "src", $(this).attr("data-animate"));
+        $(this).attr( "data-state","animate");
+    } else {
+        $(this).attr("src",$(this).attr("data-still"));
+        $(this).attr("data-state","still");
+    }
 })
 
 $("#giphy-button").on("click", function (event) {
