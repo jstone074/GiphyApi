@@ -1,5 +1,6 @@
 var buttons = ["cat", "dog", "rabbit"];
 var limit = 20;
+$("#giphy-add-btn").hide();
 
 function createButton() {
 
@@ -24,6 +25,7 @@ function createButton() {
 function displayGiphy(data,limit) {
 
     $("#giphyImages").empty()
+    $("#giphy-add-btn").show();
     var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=9m05DnrzeH6yt3AWCKZi421Q74SoqIY9&q=" + data + "&limit="+ limit +"&offset=1lang=en";
     // console.log(queryURL);
     $.ajax({

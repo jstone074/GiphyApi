@@ -16,31 +16,37 @@
 
 <body>
 
-<div class= "container">
-    <div class="row">
-        <div class="col-md-12" id="giphySearchButtons"></div>
-
-        <form id="giphyAdd">
-            <label for="giphy-input">Add a Gif</label>
-            <input type="text" id="giphy-input">
-      
-            <!-- Button triggers to add a new gif -->
-            <input id="giphy-button" type="submit" value="Submit">
-            </form>
-    </div>
+    <div class="container bg-light pt-2 pb-2 mt-2 mb-2">
+        <div class="row">
+            <div class="col-md-12" id="giphySearchButtons"></div>
+            <form class="flex-row-reverse" id="giphyAdd">
+                <label class="ml-2 " for="giphy-input">Add a Gif</label>
+                <input  class="mr-2" type="text" id="giphy-input">
     
-    <div class="row mt-2">       
+                <!-- Button triggers to add a new gif -->
+                <input id="giphy-button" type="submit" value="Submit">
+            </form>
+
+        </div>
+    </div>
+
+    <div class="container bg-light">
+
+    
+
+    <div class="row mt-2">
 
         <div class="d-inline-flex flex-wrap" id="giphyImages"></div>
         <input type="submit" id="giphy-add-btn" value="Add Additional Gifs">
-        
 
-    
+
+
+    </div>
     </div>
 </div>
-    
-<!-- linking to JS -->
-<script type="text/javascript" src="assets/app.js"></script> 
+
+    <!-- linking to JS -->
+    <script type="text/javascript" src="assets/app.js"></script>
 </body>
 
 
