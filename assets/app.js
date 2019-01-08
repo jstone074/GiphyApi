@@ -1,4 +1,4 @@
-var buttons = ["cat", "dog", "rabbit"];
+var buttons = ["Detroit Lions", "Minnesota Vikings", "Chicago Bears", "Greenbay Packers", "Kansas City Chiefs", "Oakland Raiders", "Denver Broncos","Los Angeles Chargers"];
 var limit = 20;
 $("#giphy-add-btn").hide();
 
@@ -37,6 +37,7 @@ function displayGiphy(data,limit) {
 
         for (var i = 0; i < giphyData.length; i++) {
 
+            
             var newDiv = $("<div>");
             var giphyRating = $("<div>");
             giphyRating.addClass("flex-column mr-4");
@@ -47,13 +48,10 @@ function displayGiphy(data,limit) {
             giphyDiv.attr("data-state","still");
             giphyDiv.addClass("gif mr-1 mb-2");
             giphyRating.html("Rating " + giphyData[i].rating);
-            $(newDiv).append(giphyDiv);
-            $(giphyRating).append(newDiv);
-            // $(giphyRating).append(giphyDiv);
             $("#giphyImages").append(giphyRating);
-            // $("#giphyImages").append(giphyDiv);
-  
-            
+            $(giphyRating).append(newDiv);
+            $(newDiv).append(giphyDiv);
+           
             console.log(giphyDiv);
 
         }
