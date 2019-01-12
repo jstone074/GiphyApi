@@ -40,7 +40,7 @@ function displayGiphy(data,limit) {
             
             var newDiv = $("<div>");
             var giphyRating = $("<div>");
-            giphyRating.addClass("flex-column mr-4");
+            giphyRating.addClass("flex-column ml-2 mr-2");
             var giphyDiv = $("<img>");
             giphyDiv.attr("src", giphyData[i].images.fixed_height_still.url);
             giphyDiv.attr("data-still",giphyData[i].images.fixed_height_still.url);
