@@ -7,4 +7,4 @@
 
 * Additional gifs can be added with the get more button and new buttons can be added with the search feature!
 
-    ![gif](/assets/giphy_api.gif)
+    ![gif](/assets/images/giphy_api.gif)
